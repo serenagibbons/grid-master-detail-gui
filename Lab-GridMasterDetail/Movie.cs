@@ -11,6 +11,7 @@ namespace Lab_GridMasterDetail
         public string Name { get; set; }
         public string RottenTomatoScore { get; set; }
         public string Review { get; set; }
+        public string ImageFile { get; set; }
 
         public override string ToString()
         {

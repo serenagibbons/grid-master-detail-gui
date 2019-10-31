@@ -28,7 +28,7 @@ namespace Lab_GridMasterDetail
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string filename = "MovieDataFile.txt";
+            string filename = "MovieDataFile2.txt";
 
             StreamReader sr = new StreamReader(filename);
             while (!sr.EndOfStream)
@@ -39,6 +39,7 @@ namespace Lab_GridMasterDetail
                 movie.Name = sr.ReadLine();
                 movie.RottenTomatoScore = sr.ReadLine();
                 movie.Review = sr.ReadLine();
+                movie.ImageFile = sr.ReadLine();
                
                 // add movie to listbox
                 listBoxMovie.Items.Add(movie);
@@ -58,6 +59,14 @@ namespace Lab_GridMasterDetail
             txtName.Text = m.Name;
             txtRTS.Text = m.RottenTomatoScore;
             txtReview.Text = m.Review;
+
+            string fullPathFileName = Environment.CurrentDirectory + "\\" + m.ImageFile;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(fullPathFileName);
+            bitmap.EndInit();
+            imagePoster.Source = bitmap;
+
         }
     }
 }
