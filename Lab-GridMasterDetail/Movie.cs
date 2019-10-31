@@ -12,7 +12,15 @@ namespace Lab_GridMasterDetail
         public string RottenTomatoScore { get; set; }
         public string Review { get; set; }
         public string ImageFile { get; set; }
+        public List<Actor> Actors { get; set; }
 
+        // default constructor
+        public Movie()
+        {
+            Actors = new List<Actor>();
+        }
+
+        // override ToString()
         public override string ToString()
         {
             return Name;

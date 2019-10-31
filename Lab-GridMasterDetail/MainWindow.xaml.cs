@@ -28,7 +28,7 @@ namespace Lab_GridMasterDetail
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string filename = "MovieDataFile2.txt";
+            string filename = "MovieDataFile3.txt";
 
             StreamReader sr = new StreamReader(filename);
             while (!sr.EndOfStream)
@@ -40,6 +40,15 @@ namespace Lab_GridMasterDetail
                 movie.RottenTomatoScore = sr.ReadLine();
                 movie.Review = sr.ReadLine();
                 movie.ImageFile = sr.ReadLine();
+                
+                // add actors to movie.Actors
+                for (int i = 0; i < 2; ++i)
+                {
+                    Actor a = new Actor();
+                    a.FirstName = sr.ReadLine();
+                    a.LastName = sr.ReadLine();
+                    movie.Actors.Add(a);
+                }
                
                 // add movie to listbox
                 listBoxMovie.Items.Add(movie);
@@ -49,6 +58,9 @@ namespace Lab_GridMasterDetail
 
         private void ListBoxMovie_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // clear listview
+            listActors.Items.Clear();
+
             // get the item selected
             IList items = (IList) e.AddedItems;
 
@@ -60,12 +72,19 @@ namespace Lab_GridMasterDetail
             txtRTS.Text = m.RottenTomatoScore;
             txtReview.Text = m.Review;
 
+            // display poster images
             string fullPathFileName = Environment.CurrentDirectory + "\\" + m.ImageFile;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
             bitmap.UriSource = new Uri(fullPathFileName);
             bitmap.EndInit();
             imagePoster.Source = bitmap;
+
+            // add actors to listview
+            for (int i = 0; i < 2; ++i)
+            {
+                listActors.Items.Add(m.Actors[i]);
+            }
 
         }
     }

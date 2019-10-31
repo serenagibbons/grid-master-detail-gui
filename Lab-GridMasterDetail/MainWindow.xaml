@@ -9,13 +9,21 @@
     <Grid>
         <ListBox x:Name="listBoxMovie" HorizontalAlignment="Left" Height="292" Margin="57,75,0,0" VerticalAlignment="Top" Width="195" SelectionChanged="ListBoxMovie_SelectionChanged"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="559,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
-        <TextBox x:Name="txtRTS" HorizontalAlignment="Left" Height="23" Margin="559,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
+        <TextBox x:Name="txtRTS" HorizontalAlignment="Left" Height="23" Margin="559,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
         <TextBox x:Name="txtReview" HorizontalAlignment="Left" Height="105" Margin="282,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
         <Label Content="Movie" HorizontalAlignment="Left" Margin="57,47,0,0" VerticalAlignment="Top" Width="97"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="419,75,0,0" VerticalAlignment="Top" Width="67"/>
-        <Label Content="Rotten Tomatoes Score" HorizontalAlignment="Left" Margin="419,141,0,0" VerticalAlignment="Top" Width="136"/>
+        <Label Content="Rotten Tomatoes Score" HorizontalAlignment="Left" Margin="419,115,0,0" VerticalAlignment="Top" Width="136"/>
         <Label Content="Review" HorizontalAlignment="Left" Margin="282,234,0,0" VerticalAlignment="Top" Width="68"/>
+        <Label Content="Actors" HorizontalAlignment="Left" Margin="419,169,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.215,0.678"/>
         <Image x:Name="imagePoster" HorizontalAlignment="Left" Height="156" Margin="282,73,0,0" VerticalAlignment="Top" Width="137"/>
-
+        <ListView x:Name="listActors" HorizontalAlignment="Left" Height="73" Margin="559,169,0,0" VerticalAlignment="Top" Width="179">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header = "First" DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn Header = "Last" DisplayMemberBinding="{Binding LastName}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
