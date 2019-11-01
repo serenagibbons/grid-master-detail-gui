@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.IO;
 using System.Linq;
@@ -30,30 +31,7 @@ namespace Lab_GridMasterDetail
         {
             string filename = "MovieDataFile3.txt";
 
-            StreamReader sr = new StreamReader(filename);
-            while (!sr.EndOfStream)
-            {
-                // create movie instance
-                Movie movie = new Movie();
-
-                movie.Name = sr.ReadLine();
-                movie.RottenTomatoScore = sr.ReadLine();
-                movie.Review = sr.ReadLine();
-                movie.ImageFile = sr.ReadLine();
-                
-                // add actors to movie.Actors
-                for (int i = 0; i < 2; ++i)
-                {
-                    Actor a = new Actor();
-                    a.FirstName = sr.ReadLine();
-                    a.LastName = sr.ReadLine();
-                    movie.Actors.Add(a);
-                }
-               
-                // add movie to listbox
-                listBoxMovie.Items.Add(movie);
-            }
-            sr.Close();
+            //ReadFromFile(filename);
         }
 
         private void ListBoxMovie_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,6 +64,54 @@ namespace Lab_GridMasterDetail
                 listActors.Items.Add(m.Actors[i]);
             }
 
+        }
+
+        private void OpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filename = openFileDialog.FileName;
+                ReadFromFile(filename);
+            }
+        }
+
+        private void SaveAsMenu_Handler(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitMenu_Handler(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void ReadFromFile(string filename)
+        {
+            StreamReader sr = new StreamReader(filename);
+            while (!sr.EndOfStream)
+            {
+                // create movie instance
+                Movie movie = new Movie();
+
+                movie.Name = sr.ReadLine();
+                movie.RottenTomatoScore = sr.ReadLine();
+                movie.Review = sr.ReadLine();
+                movie.ImageFile = sr.ReadLine();
+
+                // add actors to movie.Actors
+                for (int i = 0; i < 2; ++i)
+                {
+                    Actor a = new Actor();
+                    a.FirstName = sr.ReadLine();
+                    a.LastName = sr.ReadLine();
+                    movie.Actors.Add(a);
+                }
+
+                // add movie to listbox
+                listBoxMovie.Items.Add(movie);
+            }
+            sr.Close();
         }
     }
 }
