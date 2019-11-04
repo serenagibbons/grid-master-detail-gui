@@ -27,12 +27,12 @@ namespace Lab_GridMasterDetail
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+       /* private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             string filename = "MovieDataFile3.txt";
 
-            //ReadFromFile(filename);
-        }
+            ReadFromFile(filename);
+        }*/
 
         private void ListBoxMovie_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -73,12 +73,17 @@ namespace Lab_GridMasterDetail
             {
                 string filename = openFileDialog.FileName;
                 ReadFromFile(filename);
+                window.Title = "Movie Reviews - " + filename;
             }
         }
 
         private void SaveAsMenu_Handler(object sender, RoutedEventArgs e)
         {
-
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string filename = saveFileDialog.FileName;
+            }
         }
 
         private void ExitMenu_Handler(object sender, RoutedEventArgs e)
