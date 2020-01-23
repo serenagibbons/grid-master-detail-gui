@@ -10,7 +10,7 @@
         <ListBox x:Name="listBoxMovie" HorizontalAlignment="Left" Height="312" Margin="41,75,0,0" VerticalAlignment="Top" Width="211" SelectionChanged="ListBoxMovie_SelectionChanged"/>
         <TextBox x:Name="txtName" Height="23" Margin="559,75,42.333,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="txtRTS" Height="23" Margin="559,120,42.333,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtReview" Height="127" Margin="282,260,42.333,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtReview" Height="127" Margin="282,260,42.333,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SelectedValue.Review, ElementName=listBoxMovie}"/>
         <Label Content="Movie" HorizontalAlignment="Left" Margin="41,49,0,0" VerticalAlignment="Top" Width="97"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="419,75,0,0" VerticalAlignment="Top" Width="67"/>
         <Label Content="Rotten Tomatoes Score" HorizontalAlignment="Left" Margin="419,115,0,0" VerticalAlignment="Top" Width="136"/>

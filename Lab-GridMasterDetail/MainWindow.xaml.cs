@@ -45,10 +45,16 @@ namespace Lab_GridMasterDetail
             // cast as a movie object
             Movie m = (Movie) items[0];
 
+            ShowMovieDetails(m);
+
+        }
+
+        private void ShowMovieDetails(Movie m)
+        {
             // set text fields
             txtName.Text = m.Name;
             txtRTS.Text = m.RottenTomatoScore;
-            txtReview.Text = m.Review;
+            // txtReview.Text = m.Review; // set through data binding
 
             // display poster images
             string fullPathFileName = Environment.CurrentDirectory + "\\" + m.ImageFile;
@@ -63,7 +69,6 @@ namespace Lab_GridMasterDetail
             {
                 listActors.Items.Add(m.Actors[i]);
             }
-
         }
 
         private void OpenMenu_Click(object sender, RoutedEventArgs e)
@@ -73,16 +78,29 @@ namespace Lab_GridMasterDetail
             {
                 string filename = openFileDialog.FileName;
                 ReadFromFile(filename);
-                window.Title = "Movie Reviews - " + filename;
+                window.Title = "Movie Reviews - " + filename;   // change filename 
             }
         }
 
         private void SaveAsMenu_Handler(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            // open save file dialog
             if (saveFileDialog.ShowDialog() == true)
             {
                 string filename = saveFileDialog.FileName;
+
+                string text = txtName.Text + "\n"
+                    + txtRTS.Text + "\n"
+                    + txtReview.Text + "\n";
+                    // + image name
+                    // + actor names
+
+                // write movie info to the file
+                StreamWriter sw = new StreamWriter(filename);
+                sw.WriteLine(text);
+                sw.Close();
+
             }
         }
 
